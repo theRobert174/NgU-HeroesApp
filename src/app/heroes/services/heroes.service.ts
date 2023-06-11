@@ -20,4 +20,8 @@ export class HeroesService {
   getHeroById(id: string) : Observable<Hero | undefined> {
     return this.http.get<Hero>(`${this.baseUrl}/heroes/${id}`).pipe(catchError(e => of(undefined)));
   }
+
+  getSuggestions(query : string) : Observable<Hero[]> {
+    return this.http.get<Hero[]>(`${this.baseUrl}/heroes?q=${query}&limit=6`);
+  }
 }
